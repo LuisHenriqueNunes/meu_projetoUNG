@@ -7,7 +7,7 @@
 <body>
     <h1>Produtos</h1>
     <ul>
-        { % for produto in produtos % }
+        {% for produto in produtos %}
             <li>
                 <a href="{% url 'detalhes_produto' produto.pk %}">{{ produto.nome }}</a> - R$ {{ produto.preco }}
             </li>

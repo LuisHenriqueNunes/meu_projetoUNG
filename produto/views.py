@@ -1,12 +1,11 @@
-from django.shortcuts import render
-
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Produto
 from .forms import ProdutoForm 
 
 def listar_produtos(request):
     produtos = Produto.objects.all()
-    return render(request, 'produto/listar.html')
+    return render(request, 'produto/listar.html', {'produtos': produtos})
+
 
 from django.shortcuts import render
 from .models import Produto
@@ -40,11 +39,12 @@ def deletar_produto(request, pk):
     produto = get_object_or_404(Produto, pk=pk)
     if request.method == 'POST':
         produto.delete()
-        return redirect('listar_produto')
+        return redirect('listar_produtos')
+
     return render(request, 'produto/deletar.html', {'produto':produto})
 
 from django.shortcuts import render
 
-# Defina a função produto_list
-def produto_list(request):
+
+def produto_listar(request):
     return render(request, 'produto/produto_listar.html')
